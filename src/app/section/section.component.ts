@@ -4,9 +4,9 @@ import {NumberService} from "../number.service";
 @Component({
   selector: 'app-section',
   template: `<nav *ngIf="number$ | async as num"><ul>
-    <li routerLink="{{num}}/one" routerLinkActive="active">One - {{num.substring(0,3)}}</li>
-    <li routerLink="{{num}}/two" routerLinkActive="active">Two - {{num.substring(0,3)}}</li>
-    <li routerLink="{{num}}/three" routerLinkActive="active">Three - {{num.substring(0,3)}}</li>
+    <li routerLink="one/{{num}}" routerLinkActive="active">One - {{num.substring(0,3)}}</li>
+    <li routerLink="two/{{num}}" routerLinkActive="active">Two - {{num.substring(0,3)}}</li>
+    <li routerLink="three/{{num}}" routerLinkActive="active">Three - {{num.substring(0,3)}}</li>
   </ul>
   </nav><router-outlet></router-outlet>`,
   styles: [`
