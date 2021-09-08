@@ -1,20 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-part-two',
-  template: `
-    <p>
-      part-two works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<p>2</p>`
 })
-export class PartTwoComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class PartTwoComponent {}

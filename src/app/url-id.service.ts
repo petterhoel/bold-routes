@@ -11,13 +11,13 @@ export class UrlIdService {
   constructor(private route: ActivatedRoute,
               private numberService: NumberService,
               private router: Router) {
+    this.route.paramMap.subscribe(p => console.debug({pid: p.get('jaja')}))
 
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       filter(({url}: NavigationEnd) => url.startsWith(this.prefix)),
-      tap((url) => this.navigationHandler(url.url))
+      tap(({url}) => this.navigationHandler(url))
     ).subscribe();
-
   }
 
   navigate(id: string):void {
@@ -26,14 +26,16 @@ export class UrlIdService {
     if (!segmentPaths?.length){
       return;
     }
-    const paths = segmentPaths.map((path, index) => index === 1 ? id : path)
+    console.debug({id})
+    const paths = segmentPaths.map((path, index) => index === 2 ? id : path)
     this.router.navigate(paths);
   }
 
   private navigationHandler(path: string = '') {
-    const withputPrefix  = path.substring(this.prefix.length)
-    const nextSlasgAt = withputPrefix.indexOf('/');
-    const id = withputPrefix.substring(0, nextSlasgAt)
+    const nextSlasgAt = path.lastIndexOf('/') + 1;
+    const id  = path.substring(nextSlasgAt, path.length)
+
+    console.debug({id})
     this.numberService.updateNumber(id || '')
   }
 }

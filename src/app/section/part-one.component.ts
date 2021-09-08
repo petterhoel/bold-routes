@@ -1,20 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-part-one',
-  template: `
-    <p>
-      part-one works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<p>1</p>`,
 })
 export class PartOneComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(p => console.debug({pid: p.get('jaja')}))
   }
-
 }
